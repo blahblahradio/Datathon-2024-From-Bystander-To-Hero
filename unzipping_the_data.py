@@ -1,31 +1,29 @@
-import pandas as pd
-import zipfile
 import os
+import pandas as pd
 
-# Extract the zip file
-zip_file_path = 'Data2024.zip'
-extract_folder = 'data'
+# Define input and output directories
+input_folder = 'Data2024'
+output_folder = 'data'  
 
-with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-    zip_ref.extractall(extract_folder)
+# Ensure output folder exists, if not create it
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
-# Read .parquet.gzip files and convert them to CSV
-parquet_folder = extract_folder
+# Function to convert parquet to csv
+def parquet_to_csv(file_path, output_folder):
+    # Read parquet file
+    df = pd.read_parquet(file_path)
+    
+    # Define output file path for CSV
+    output_file = os.path.join(output_folder, os.path.splitext(os.path.basename(file_path))[0] + '.csv')
+    
+    # Write dataframe to CSV
+    df.to_csv(output_file, index=False)
 
-output_folder = 'data'
-os.makedirs(output_folder, exist_ok=True)
+# Iterate through files in input folder
+for file_name in os.listdir(input_folder):
+    if file_name.endswith('.parquet.gzip') or file_name.endswith('.parquet'):
+        file_path = os.path.join(input_folder, file_name)
+        parquet_to_csv(file_path, output_folder)
 
-for file_name in os.listdir(parquet_folder):
-    if file_name.endswith('.parquet.gzip'):
-        parquet_file_path = os.path.join(parquet_folder, file_name)
-        df = pd.read_parquet(parquet_file_path)
-        csv_file_path = os.path.join(output_folder, os.path.splitext(file_name)[0] + '.csv')
-
-        # Remove the .parquet extension from the file name
-        csv_file_name = file_name.replace('.parquet.gzip', '') + '.csv'
-        csv_file_path = os.path.join(output_folder, csv_file_name)
-        df.to_csv(csv_file_path, index=False)
-
-        # Remove the .parquet.gzip files
-        os.remove(parquet_file_path)
-print("Conversion completed. CSV files are saved in the 'data' folder.")
+print("Conversion complete.")
