@@ -44,10 +44,6 @@ for index, row in aed_bxl.iterrows():
         # Add latitude and longitude to the DataFrame
         aed_bxl.at[index, 'latitude'] = location.latitude
         aed_bxl.at[index, 'longitude'] = location.longitude
-    else:
-        # If location not found, mark NaN or any appropriate placeholder
-        aed_bxl.at[index, 'latitude'] = None
-        aed_bxl.at[index, 'longitude'] = None
 
 
 # For MUG Locations
@@ -61,10 +57,6 @@ for index, row in mug_bxl.iterrows():
         # Add latitude and longitude to the DataFrame
         mug_bxl.at[index, 'latitude'] = location.latitude
         mug_bxl.at[index, 'longitude'] = location.longitude
-    else:
-        # If location not found, mark NaN or any appropriate placeholder
-        mug_bxl.at[index, 'latitude'] = None
-        mug_bxl.at[index, 'longitude'] = None
 
 # For Permanence Locations
 interventions_bxl['latitude_permanence']= interventions_bxl['latitude_permanence'].apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
