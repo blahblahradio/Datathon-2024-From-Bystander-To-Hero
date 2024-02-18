@@ -66,7 +66,10 @@ interventions_bxl['longitude_permanence']= interventions_bxl['longitude_permanen
 interventions_bxl['latitude_intervention']= interventions_bxl['latitude_intervention'].astype(int).apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
 interventions_bxl['longitude_intervention']= interventions_bxl['longitude_intervention'].astype(int).apply(lambda x: float(str(x)[:1] + '.' + str(x)[1:]))
 
-interventions_bxl_map = interventions_bxl[['latitude_intervention','longitude_intervention','latitude_permanence', 'longitude_permanence', 'vector_type']]
+# Dropping the duplicates
+aed_bxl = aed_bxl.drop_duplicates()
+mug_bxl = mug_bxl.drop_duplicates()
+interventions_bxl_map = interventions_bxl[['latitude_intervention','longitude_intervention','latitude_permanence', 'longitude_permanence', 'vector_type']].drop_duplicates()
 
 # Save the modified dataframes to CSV files
 aed_bxl.to_csv('data/aed_bxl.parquet.csv', index=False)
