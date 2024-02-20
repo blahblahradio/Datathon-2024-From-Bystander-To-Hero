@@ -17,12 +17,12 @@ dash.register_page(__name__, path='/optimization')
 data = pd.read_csv("data/interventions_bxl.parquet.csv").drop_duplicates()
 
 # For Permanence Locations
-data['latitude_permanence']= data['latitude_permanence'].apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
-data['longitude_permanence']= data['longitude_permanence'].apply(lambda x: float(str(x)[:1] + '.' + str(x)[1:]))
+#data['latitude_permanence']= data['latitude_permanence'].apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
+#data['longitude_permanence']= data['longitude_permanence'].apply(lambda x: float(str(x)[:1] + '.' + str(x)[1:]))
 
 # For Intervention Locations
-data['latitude_intervention']= data['latitude_intervention'].astype(int).apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
-data['longitude_intervention']= data['longitude_intervention'].astype(int).apply(lambda x: float(str(x)[:1] + '.' + str(x)[1:]))
+#data['latitude_intervention']= data['latitude_intervention'].astype(int).apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
+#data['longitude_intervention']= data['longitude_intervention'].astype(int).apply(lambda x: float(str(x)[:1] + '.' + str(x)[1:]))
 
 
 # Filter the dataset to only include relevant columns
@@ -31,7 +31,7 @@ relevant_data = data[['latitude_permanence', 'longitude_permanence',
                       'vector_type', 'waiting_time']].dropna()
 
 
-aed_bxl = pd.read_csv('C:/Users/souna/Desktop/x/Datathon-2024-From-Bystander-To-Hero/data/aed_bxl.parquet.csv')
+aed_bxl = pd.read_csv('data/aed_bxl.parquet.csv')
 
 
 # Create the dropdown menu options
@@ -52,7 +52,7 @@ layout = html.Div([
             id='cityname-dropdown',
             options=dropdown_options,
             placeholder="Select a City",
-            style={"width": "200px", "margin-right": "10px"},
+            style={"width": "300px", "margin-right": "10px"},
         ),
 
         dcc.Input(

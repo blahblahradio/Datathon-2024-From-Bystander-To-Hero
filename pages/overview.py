@@ -63,6 +63,32 @@ for index, row in interventions_bxl_map[interventions_bxl_map['vector_type']=='D
 # Convert Folium map to HTML
 map_html = mymap.get_root().render()
 
+# Card with overall info 
+card_main = dbc.Card(
+    [        dbc.CardBody(
+            [
+                html.H2("When is the most quiet moment to take a nap in the Naamsestraat street?", className="card-title",style={"color": "#dc3545", "paddingTop": "50px", "textAlign": "left","fontSize": "32px"}),
+                html.P(
+                    "Taking some time off from studying is crucial for students. However, if you reside on Naamsestraat, finding a peaceful moment or being able to take a nap can be challenging due to the street's high level of activity and noise. Are you in search of a solution to identify periods of tranquility during the week? This tool can assist you in pinpointing those moments of calm on Naamsestraat.",
+                    className="card-text",
+                      style={
+                        "paddingTop": "20px",  # Add spacing at the top
+                        "paddingBottom": "50px",  # Add spacing at the bottom
+                        "textAlign": "left",
+                        "margin": "0",
+                        "fontSize": "18px"  # Increase font size
+                    }
+                ),
+               
+            ]
+        ),
+    ],
+
+      outline=False
+)
+
+
+
 # Define the layout of the overview page
 layout = html.Div([
     html.H1('Overview'),
@@ -87,7 +113,8 @@ layout = html.Div([
             html.Iframe(id='map', srcDoc=map_html, width='100%', height='600'),
             width=9
         )
-    ])
+    ]),
+    card_main
 ])
 
 # Define callback to update the map based on dropdown selection

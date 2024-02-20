@@ -66,12 +66,64 @@ interventions_bxl['longitude_permanence']= interventions_bxl['longitude_permanen
 interventions_bxl['latitude_intervention']= interventions_bxl['latitude_intervention'].astype(int).apply(lambda x: float(str(x)[:2] + '.' + str(x)[2:]))
 interventions_bxl['longitude_intervention']= interventions_bxl['longitude_intervention'].astype(int).apply(lambda x: float(str(x)[:1] + '.' + str(x)[1:]))
 
+
+#Remove parenthesis city_intervention
+def remove_text_within_parentheses(text):
+    if text is None or isinstance(text, float):  # Check if text is None or float
+        return None
+    return text.split('(')[0].strip().rstrip()  # Remove any additional trailing whitespace
+
+# Apply the function to the column
+interventions_bxl['cityname_intervention'] = interventions_bxl['cityname_intervention'].apply(remove_text_within_parentheses)
+
+#French-Dutch municipality name
+def replace_french_with_dutch(city_name):
+    city_dict = {
+        'Anderlecht': 'Anderlecht',
+        'Auderghem': 'Oudergem',
+        'Berchem-Sainte-Agathe': 'Sint-Agatha-Berchem',
+        'Bruxelles': 'Brussel',
+        'Etterbeek': 'Etterbeek',
+        'Evere': 'Evere',
+        'Forest': 'Vorst',
+        'Ganshoren': 'Ganshoren',
+        'Ixelles': 'Elsene',
+        'Jette': 'Jette',
+        'Koekelberg': 'Koekelberg',
+        'Molenbeek-Saint-Jean': 'Sint-Jans-Molenbeek',
+        'Saint-Gilles': 'Sint-Gillis',
+        'Saint-Josse-ten-Noode': 'Sint-Joost-ten-Node',
+        'Schaerbeek': 'Schaarbeek',
+        'Uccle': 'Ukkel',
+        'Watermael-Boitsfort': 'Watermaal-Bosvoorde',
+        'Woluwe-Saint-Lambert': 'Sint-Lambrechts-Woluwe',
+        'Woluwe-Saint-Pierre': 'Sint-Pieters-Woluwe'
+    }
+    return city_dict.get(city_name, city_name)  # Return the Dutch name if found, otherwise return the original name
+
+# Function to determine if the city name is in French
+def is_french(city_name):
+    french_names = set([
+        'Auderghem', 'Berchem-Sainte-Agathe', 'Bruxelles',
+        'Etterbeek', 'Evere', 'Forest', 'Ganshoren', 'Ixelles', 'Jette',
+        'Koekelberg', 'Molenbeek-Saint-Jean', 'Saint-Gilles', 'Saint-Josse-ten-Noode',
+        'Schaerbeek', 'Uccle', 'Watermael-Boitsfort', 'Woluwe-Saint-Lambert',
+        'Woluwe-Saint-Pierre'
+    ])
+    return city_name in french_names
+
+# Apply the function conditionally
+interventions_bxl['cityname_intervention'] = interventions_bxl['cityname_intervention'].apply(lambda x: replace_french_with_dutch(x) if is_french(x) else x)
+
+
 # Dropping the duplicates
 aed_bxl = aed_bxl.drop_duplicates()
 mug_bxl = mug_bxl.drop_duplicates()
 interventions_bxl_map = interventions_bxl[['latitude_intervention','longitude_intervention','latitude_permanence', 'longitude_permanence', 'vector_type']].drop_duplicates()
 
+
 # Save the modified dataframes to CSV files
 aed_bxl.to_csv('data/aed_bxl.parquet.csv', index=False)
 mug_bxl.to_csv('data/mug_bxl.parquet.csv', index=False)
 interventions_bxl_map.to_csv('data/interventions_bxl_map.parquet.csv', index=False)
+interventions_bxl.to_csv('data/interventions_bxl.parquet.csv', index=False)
