@@ -14,20 +14,13 @@ nav_bar = html.Nav(
             id="overview-link",
         ),
         dcc.Link(
-            "Visual Analysis",
-            href="/analysis-1",
+            "Optimization",
+            href="/optimization",
             className="link",
             style={"margin-left": "15px"},
             id="analysis-1-link",
         ),
-        dcc.Link(
-            "Time Series",
-            href="/analysis-2",
-            className="link",
-            id="analysis-2-link",
-            style={"margin-left": "35px"},
 
-        ),
         dcc.Link(
             "Model",
             href="/model",
