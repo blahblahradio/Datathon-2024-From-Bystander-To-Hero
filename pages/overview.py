@@ -67,9 +67,9 @@ map_html = mymap.get_root().render()
 card_main = dbc.Card(
     [        dbc.CardBody(
             [
-                html.H2("When is the most quiet moment to take a nap in the Naamsestraat street?", className="card-title",style={"color": "#dc3545", "paddingTop": "50px", "textAlign": "left","fontSize": "32px"}),
+                html.H2("What are AED's?", className="card-title",style={"color": "#dc3545", "paddingTop": "50px", "textAlign": "left","fontSize": "32px"}),
                 html.P(
-                    "Taking some time off from studying is crucial for students. However, if you reside on Naamsestraat, finding a peaceful moment or being able to take a nap can be challenging due to the street's high level of activity and noise. Are you in search of a solution to identify periods of tranquility during the week? This tool can assist you in pinpointing those moments of calm on Naamsestraat.",
+                    "Automated External Defibrillators (AEDs) are portable devices crucial for sudden cardiac arrest (SCA) emergencies. They're user-friendly, often featuring voice prompts and visual aids for easy operation by individuals without medical training. Quick access to AEDs significantly increases the likelihood of survival, as SCA survival rates decrease by 10% every minute without defibrillation. Many countries mandate AED placement in public spaces like airports and schools. Modern AEDs may include smart technology for remote monitoring and maintenance. They often have pediatric capabilities, adjusting shock energy for children. Legal protections, commonly known as Good Samaritan laws, encourage bystander intervention by shielding users from liability when acting in good faith. Continuous advancements aim to improve AED performance, usability, and accessibility, underscoring their vital role in saving lives during cardiac emergencies.",
                     className="card-text",
                       style={
                         "paddingTop": "20px",  # Add spacing at the top
