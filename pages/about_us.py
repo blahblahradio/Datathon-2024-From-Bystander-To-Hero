@@ -66,7 +66,7 @@ layout = html.Div(
                 ),
                 html.P(
                     "To make our project findings more accessible to the public, we have developed an interactive web application. "
-                    "Using Plotly Dash, we have created an intuitive and visually appealing interface that allows users to explore the noise and meteorological data.",
+                    "Using Plotly Dash, we have created an intuitive and visually appealing interface that allows users to explore the medical intervention and location of various medical equipment data.",
                     style={"text-align": "center"}
                 ),
                 html.H3(
