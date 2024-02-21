@@ -1,4 +1,4 @@
-﻿# MDA-Project: Noise in Leuven
+﻿# DATATHON-2024: From Bystander to Hero
 
 ## Main Files and Folders Description:
 - *create_venv.ps1*              : PowerShell script to create a virtual environment using the requirements.txt file
