@@ -1,4 +1,4 @@
-from dash import Dash, dcc, html  
+from dash import Dash, dcc, html
 import dash_bootstrap_components as dbc
 import dash
 
@@ -11,23 +11,15 @@ nav_bar = html.Nav(
             "Overview",
             href="/",
             className="link",
+            style={"margin-left": "115px"},
             id="overview-link",
         ),
         dcc.Link(
             "Optimization",
             href="/optimization",
             className="link",
-            style={"margin-left": "15px"},
+            style={"margin-right": "25px"},
             id="analysis-1-link",
-        ),
-
-        dcc.Link(
-            "Model",
-            href="/model",
-            className="link",
-            id="model-link",
-            style={"margin-left": "20px"},
-
         ),
         dcc.Link(
             "About Us",
@@ -50,9 +42,8 @@ nav_bar = html.Nav(
     },
 )
 
-
 app.layout = html.Div(
-    [   
+    [
         html.Link(
             rel="stylesheet",
             href="/assets/styles.css"  # Path to the CSS file
@@ -62,7 +53,6 @@ app.layout = html.Div(
         dash.page_container
     ]
 )
-
 
 @app.callback(
     [dash.dependencies.Output(f"{link_id}", "className") for link_id in ["overview-link", "analysis-1-link", "analysis-2-link", "model-link", "about-us-link"]],

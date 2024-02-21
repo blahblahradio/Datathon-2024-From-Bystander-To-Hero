@@ -48,7 +48,7 @@ layout = html.Div(
                 ),
                 html.P(
                     "Our main objective is to find out the optimal location for placing AED devices across the city of Brussels."
-                    "We aim to identify correlations between these variables and develop a predictive model for sound type classification.",
+                    "We aim to identify suitable locations based on variables like waiting time for emergency services and geographical prevalence of historical emergencies.",
                     style={"text-align": "center"}
                 ),
                 html.H3(
@@ -56,8 +56,8 @@ layout = html.Div(
                     style={"text-align": "center"}
                 ),
                 html.P(
-                    "To achieve our goal, we used an extensive dataset consisting of locations of interventions and permanences across Brussels. "
-                    "We employed advanced statistical analysis techniques, including data preprocessing, exploratory data analysis, and machine learning algorithms, to uncover patterns and associations in the data.",
+                    "To achieve our goal, we used an extensive dataset consisting of, among many others, locations of interventions and permanences across Brussels. "
+                    "We employed advanced statistical analysis techniques, including data preprocessing, exploratory data analysis, and machine learning algorithms, to uncover patterns and associations in the data that could inform AED placement.",
                     style={"text-align": "center"}
                 ),
                 html.H3(
